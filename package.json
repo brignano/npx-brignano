@@ -1,0 +1,23 @@
+{
+  "name": "brignano",
+  "version": "0.0.1",
+  "main": "index.js",
+  "bin": {
+    "anthony": "card.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/brignano/npx_card.git"
+  },
+  "author": "Anthony Brignano",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/brignano/npx_card/issues"
+  },
+  "homepage": "https://github.com/brignano/npx_card#readme",
+  "keywords": [],
+  "description": "npx resume card"
+}
