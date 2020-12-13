@@ -25,7 +25,7 @@ const questions = [
             {
                 name: `Send me an ${chalk.green.bold("Email")}.`,
                 value: () => {
-                    open("mailto:anthonybrignano@gmail.com");
+                    open("mailto:hi@brignano.io");
                     console.log("\nDone, see you soon at inbox.\n");
                 }
             },
@@ -59,7 +59,7 @@ const questions = [
 const data = {
     name: chalk.bold.green("             Anthony Brignano"),
     handle: chalk.white("@brignano"),
-    work: `${chalk.white("Software Engineer at")} ${chalk
+    work: `${chalk.bgWhite.black("Software Engineer at")} ${chalk
         .hex("#3A5A78")
         .bold("The Hartford")}`,
     github: chalk.gray("https://github.com/") + chalk.green("brignano"),
@@ -89,12 +89,13 @@ const me = boxen(
         ``,
         `${data.labelCard}  ${data.npx}`,
         ``,
-        `${chalk.italic("My inbox is always open. Whether you have a")}`,
+        `${chalk.italic("Although I'm not currently looking for any new")}`,
+        `${chalk.italic("opportunities, my inbox is always open. Whether")}`,
         `${chalk.italic(
-            "question or just want to say hi, I will try "
+            "you have a question or just want to say hi, I"
         )}`,
         `${chalk.italic(
-            "my best to get back to you!"
+            "will try my best to get back to you! :)"
         )}`
     ].join("\n"),
     {
