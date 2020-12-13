@@ -59,7 +59,7 @@ const questions = [
 const data = {
     name: chalk.bold.green("             Anthony Brignano"),
     handle: chalk.white("@brignano"),
-    work: `${chalk.bgWhite.black("Software Engineer at")} ${chalk
+    work: `${chalk.white("Software Engineer at")} ${chalk
         .hex("#3A5A78")
         .bold("The Hartford")}`,
     github: chalk.gray("https://github.com/") + chalk.green("brignano"),
@@ -89,8 +89,8 @@ const me = boxen(
         ``,
         `${data.labelCard}  ${data.npx}`,
         ``,
-        `${chalk.italic("Although I'm not currently looking for any new")}`,
-        `${chalk.italic("opportunities, my inbox is always open. Whether")}`,
+        `${chalk.italic("Although ")} ${chalk.italic.bold("I'm not currently looking for any new")}`,
+        `${chalk.italic.bold("opportunities")}${chalk.italic(", my inbox is always open. Whether")}`,
         `${chalk.italic(
             "you have a question or just want to say hi, I"
         )}`,
