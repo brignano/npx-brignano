@@ -89,13 +89,12 @@ const me = boxen(
         ``,
         `${data.labelCard}  ${data.npx}`,
         ``,
-        `${chalk.italic("Although ")} ${chalk.italic.bold("I'm not currently looking for any new")}`,
-        `${chalk.italic.bold("opportunities")}${chalk.italic(", my inbox is always open. Whether")}`,
+        `${chalk.italic("My inbox is always open. Whether you have a")}`,
         `${chalk.italic(
-            "you have a question or just want to say hi, I"
+            "question or just want to say hi, I will try"
         )}`,
         `${chalk.italic(
-            "will try my best to get back to you! :)"
+            "my best to get back to you! :)"
         )}`
     ].join("\n"),
     {
