@@ -1,6 +1,6 @@
 {
   "name": "brignano",
-  "version": "0.0.2",
+  "version": "0.0.31",
   "main": "card.js",
   "bin": {
     "anthony": "card.js"
