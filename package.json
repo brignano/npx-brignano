@@ -1,23 +1,34 @@
 {
   "name": "brignano",
   "version": "0.0.1",
-  "main": "index.js",
+  "main": "card.js",
   "bin": {
     "anthony": "card.js"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node card.js",
+    "publish": "npm version patch & npm publish"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/brignano/npx_card.git"
   },
-  "author": "Anthony Brignano",
+  "author": "Anthony Brignano <anthonybrignano@gmail.com> (https://brignano.io/)",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/brignano/npx_card/issues"
   },
   "homepage": "https://github.com/brignano/npx_card#readme",
   "keywords": [],
-  "description": "npx resume card"
+  "description": "A personal card for Anthony Brignano (@brignano)",
+  "dependencies": {
+    "boxen": "^4.2.0",
+    "chalk": "^4.1.0",
+    "clear": "^0.1.0",
+    "cli-spinners": "^2.5.0",
+    "inquirer": "^7.3.3",
+    "open": "^7.3.0",
+    "ora": "^5.1.0",
+    "request": "^2.88.2"
+  }
 }
