@@ -37,9 +37,9 @@ const questions = [
                         text: ' Downloading Resume',
                         spinner: cliSpinners.material,
                     }).start();
-                    let pipe = request('https://drive.google.com/file/d/1IHV9I8taSda_YsBrzC0wwmGJXUnd5QF2/export/pdf').pipe(fs.createWriteStream('./anthony-resume.pdf'));
+                    let pipe = request('https://brignano-io.vercel.app/resume').pipe(fs.createWriteStream('./anthony-resume.html'));
                     pipe.on("finish", function () {
-                        let downloadPath = path.join(process.cwd(), 'anthony-resume.pdf')
+                        let downloadPath = path.join(process.cwd(), 'anthony-resume.html')
                         console.log(`\nResume Downloaded at ${downloadPath} \n`);
                         open(downloadPath)
                         loader.stop();
