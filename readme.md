@@ -1,4 +1,6 @@
-# NPX CARD
+# npx_brignano
+
+An interactive shell experience that renders my business card in your terminal.
 
 👇 just hit 
 ```bash
