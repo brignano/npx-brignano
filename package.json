@@ -1,6 +1,6 @@
 {
   "name": "brignano",
-  "version": "0.0.37",
+  "version": "0.0.38",
   "main": "card.js",
   "bin": {
     "anthony": "card.js"
@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/brignano/npx_card.git"
+    "url": "git+https://github.com/brignano/npx-brignano.git"
   },
   "author": "Anthony Brignano <anthonybrignano@gmail.com> (https://brignano.io/)",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/brignano/npx_card/issues"
+    "url": "https://github.com/brignano/npx-brignano/issues"
   },
-  "homepage": "https://github.com/brignano/npx_card#readme",
+  "homepage": "https://github.com/brignano/npx-brignano#readme",
   "keywords": [],
   "description": "A personal card for Anthony Brignano (@brignano)",
   "dependencies": {
