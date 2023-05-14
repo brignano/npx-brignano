@@ -59,7 +59,7 @@ const questions = [
 const data = {
     name: chalk.bold.green("             Anthony Brignano"),
     handle: chalk.white("@brignano"),
-    work: `${chalk.white("Staff Software Engineer at")} ${chalk
+    work: `${chalk.white("Sr. Staff Software Engineer at")} ${chalk
         .hex("#3A5A78")
         .bold("The Hartford")}`,
     github: chalk.gray("https://github.com/") + chalk.green("brignano"),
