@@ -21,7 +21,7 @@ npx brignano
 
 Demo
 
-![](https://raw.githubusercontent.com/brignano/npx_brignano/main/demo.gif)
+![](demo.gif)
 
 What it does
 
