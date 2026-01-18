@@ -1,12 +1,20 @@
 {
   "name": "brignano",
-  "version": "0.0.40",
-  "main": "card.js",
+  "version": "0.0.5",
+  "type": "module",
+  "main": "dist/card.js",
+  "engines": {
+    "node": ">=18"
+  },
   "bin": {
-    "anthony": "card.js"
+    "brignano": "dist/card.js"
   },
   "scripts": {
-    "test": "node card.js"
+    "build": "tsc",
+    "dev": "ts-node --esm src/card.ts",
+    "start": "node dist/card.js",
+    "test": "node dist/card.js --no-prompt",
+    "prepare": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -21,13 +29,15 @@
   "keywords": [],
   "description": "A personal card for Anthony Brignano (@brignano)",
   "dependencies": {
-    "boxen": "^4.2.0",
-    "chalk": "^4.1.0",
-    "clear": "^0.1.0",
-    "cli-spinners": "^2.5.0",
-    "inquirer": "^7.3.3",
-    "open": "^7.3.0",
-    "ora": "^5.1.0",
-    "request": "^2.88.2"
+    "boxen": "^6.0.0",
+    "chalk": "^5.2.0",
+    "inquirer": "^9.2.7",
+    "open": "^8.4.0"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.1",
+    "typescript": "^5.1.6",
+    "@types/node": "^20.5.1",
+    "@types/inquirer": "^9.0.3"
   }
 }
