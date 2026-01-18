@@ -27,9 +27,45 @@ What it does
 
 - Renders a boxed, colored business card in the terminal using `boxen` and `chalk`.
 - Presents a small interactive menu (via `inquirer`) with actions:
-	- Send an email (opens your mail client with `mailto:`)
-	- Download the resume (fetches a resume HTML and opens it locally)
-	- Quit
+  - Send an email (opens your mail client with `mailto:`)
+  - View the resume (opens https://brignano.io/resume in your browser)
+  - Quit
+
+CLI
+
+The CLI supports both interactive mode (default) and non-interactive flags. Run `npx brignano --help` to see the same help output.
+
+- `-h, --help` — Show help and exit.
+- `-v, --view` — Open the resume in the default browser (`https://brignano.io/resume`).
+- `-d, --download` — Deprecated alias; now opens the resume in the browser and prints a deprecation warning.
+- `-e, --email` — Open the default mail client with a new message to `hi@brignano.io`.
+- `--no-prompt` — Show the card only and exit (non-interactive).
+
+Examples
+
+Run interactively (default):
+```bash
+npx brignano
+```
+
+Open resume directly in browser:
+```bash
+npx brignano --view
+# or
+npx brignano -v
+```
+
+Open mail client to email Anthony:
+```bash
+npx brignano --email
+# or
+npx brignano -e
+```
+
+Show card only (useful in CI or scripts):
+```bash
+npx brignano --no-prompt
+```
 
 Files
 
