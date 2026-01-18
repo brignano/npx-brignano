@@ -1,6 +1,6 @@
 {
   "name": "brignano",
-  "version": "0.0.5",
+  "version": "1.0.0",
   "type": "module",
   "main": "dist/card.js",
   "engines": {
