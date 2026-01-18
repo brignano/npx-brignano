@@ -21,7 +21,7 @@ npx brignano
 
 Demo
 
-![](/demo.gif)
+![](demo.gif)
 
 What it does
 
