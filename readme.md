@@ -67,10 +67,12 @@ Show card only (useful in CI or scripts):
 npx brignano --no-prompt
 ```
 
+
 Files
 
-- `card.js` — main CLI script: prints the card and runs the interactive menu.
-- `package.json` — project metadata and `bin` entry used by `npx`.
+- `src/card.ts` — primary CLI source (TypeScript).
+- `dist/card.js` — compiled CLI entry referenced by `package.json` and used by `npx`.
+- `package.json` — project metadata, `bin` entry, scripts, and `engines` (Node >=18).
 
 Usage
 
@@ -78,19 +80,21 @@ Usage
 - Or clone and run locally:
 
 ```bash
-git clone https://github.com/brignano/npx_brignano.git
+git clone https://github.com/brignano/npx-brignano.git
 cd npx-brignano
 npm install
-node card.js
+npm run build
+node dist/card.js
 ```
 
 Prerequisites
 
-- Node.js (tested with Node 14+). `npx` is included with npm.
+- Node.js (tested with Node >=18). `npx` is included with npm.
 
 Notes
 
-- When you choose "Download my Resume" the script requests the resume URL and writes `anthony-brignano.html` into the current working directory, then opens it.
+- The `--download` flag is deprecated and now opens the resume in your default browser instead of writing a local file.
+- Use `--view` (or `-v`) to open the resume directly at https://brignano.io/resume.
 - Links printed in the card may be cmd/ctrl+clickable in supported terminals.
 
 Credits
