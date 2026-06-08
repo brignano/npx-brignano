@@ -1,10 +1,10 @@
 {
   "name": "brignano",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "type": "module",
   "main": "dist/card.js",
   "engines": {
-    "node": ">=18"
+    "node": ">=20"
   },
   "bin": {
     "brignano": "dist/card.js"
@@ -26,18 +26,31 @@
     "url": "https://github.com/brignano/npx-brignano/issues"
   },
   "homepage": "https://github.com/brignano/npx-brignano#readme",
-  "keywords": [],
+  "keywords": [
+    "npx",
+    "business-card",
+    "cli",
+    "brignano",
+    "resume",
+    "vcard"
+  ],
   "description": "A personal card for Anthony Brignano (@brignano)",
   "dependencies": {
     "boxen": "^6.0.0",
     "chalk": "^5.2.0",
+    "clipboardy": "^5.0.0",
+    "figlet": "^1.11.0",
+    "gradient-string": "^3.0.0",
     "inquirer": "^9.2.7",
-    "open": "^8.4.0"
+    "open": "^8.4.0",
+    "qrcode-terminal": "^0.12.0"
   },
   "devDependencies": {
     "ts-node": "^10.9.1",
     "typescript": "^5.1.6",
     "@types/node": "^20.5.1",
-    "@types/inquirer": "^9.0.3"
+    "@types/inquirer": "^9.0.3",
+    "@types/figlet": "^1.7.0",
+    "@types/gradient-string": "^1.1.6"
   }
 }
