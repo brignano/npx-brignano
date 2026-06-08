@@ -13,8 +13,17 @@ Set Padding 20
 Set Theme "GitHub Dark"
 Set TypingSpeed 55ms
 
-# Launch the local build so the demo reflects this branch (not the published npm version).
-Type "node dist/card.js"
+# Pre-warm the npx cache off-camera so the real run doesn't show an install prompt.
+Hide
+Type "npx --yes brignano --no-prompt >/dev/null 2>&1"
+Enter
+Sleep 15s
+Type "clear"
+Enter
+Show
+
+# The real thing — exactly what anyone runs.
+Type "npx brignano"
 Sleep 400ms
 Enter
 
