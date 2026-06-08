@@ -12,6 +12,7 @@ Set Height 1000
 Set Padding 20
 Set Theme "GitHub Dark"
 Set TypingSpeed 55ms
+Set WaitTimeout 30s
 
 # Pre-warm the npx cache off-camera so the real run doesn't show an install prompt.
 Hide
@@ -27,8 +28,11 @@ Type "npx brignano"
 Sleep 400ms
 Enter
 
-# Banner animation + card reveal + live GitHub stats.
-Sleep 4s
+# Wait for the interactive menu to actually be on screen (and inquirer to be in
+# raw mode) before sending any keys — otherwise arrow keys echo as ^[[B. This is
+# robust against npx/animation/live-fetch startup latency.
+Wait+Screen /What would you like to do/
+Sleep 1s
 
 # Walk down the menu to showcase the actions.
 Down
