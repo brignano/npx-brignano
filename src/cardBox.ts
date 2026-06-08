@@ -17,8 +17,10 @@ interface CardOptions {
 // Builds the boxen business card. `live` is optional — when absent the live
 // line is simply omitted, so the card looks intentional with or without network.
 export function renderCard({ live, tagline }: CardOptions): string {
+  // Violet accent matches brignano.io (violet-400 #a78bfa on dark).
+  const accent = chalk.hex('#a78bfa');
   const lines = [
-    chalk.bold.green(profile.fullName) + '  ' + chalk.gray(profile.handle),
+    accent.bold(profile.fullName) + '  ' + chalk.gray(profile.handle),
     '',
     `${label('Work')}  ${profile.title} ${chalk.gray('at')} ${chalk
       .hex('#3A5A78')
@@ -57,6 +59,6 @@ export function renderCard({ live, tagline }: CardOptions): string {
     float: 'center',
     padding: 1,
     borderStyle: 'round',
-    borderColor: 'green',
+    borderColor: 'gray',
   });
 }

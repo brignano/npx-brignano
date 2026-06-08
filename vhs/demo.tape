@@ -10,7 +10,7 @@ Set FontSize 14
 Set Width 1000
 Set Height 1000
 Set Padding 20
-Set Theme "Catppuccin Mocha"
+Set Theme "GitHub Dark"
 Set TypingSpeed 55ms
 
 # Launch the local build so the demo reflects this branch (not the published npm version).

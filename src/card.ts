@@ -2,7 +2,7 @@
 
 import chalk from 'chalk';
 import inquirer from 'inquirer';
-import { renderBanner } from './banner.js';
+import { animateBanner, renderBanner } from './banner.js';
 import { renderCard } from './cardBox.js';
 import { funFacts, pick, profile, taglines } from './data.js';
 import {
@@ -60,9 +60,14 @@ async function main(): Promise<void> {
 
   clearConsole();
 
-  // Banner first — slightly slower cadence for a crafted feel.
-  await reveal(renderBanner(), 45, animate);
-  if (animate) await sleep(120);
+  // Banner first: an animated violet shimmer when we can animate, otherwise the
+  // static gradient.
+  if (animate) {
+    await animateBanner();
+    await sleep(120);
+  } else {
+    console.log(renderBanner());
+  }
 
   // Card, enriched with whatever the (bounded) live fetch returned.
   const live = await livePromise;
