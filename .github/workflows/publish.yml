@@ -1,5 +1,5 @@
-# This workflow will run tests using node and then publish a package to GitHub Packages when a release is created
-# For more information see: https://docs.github.com/en/actions/publishing-packages/publishing-nodejs-packages
+# Publishes to npm when a GitHub release is created.
+# https://docs.github.com/en/actions/publishing-packages/publishing-nodejs-packages
 
 name: Publish Package
 
@@ -11,6 +11,11 @@ on:
 jobs:
   publish:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      # Required for npm provenance: lets the job mint an OIDC token so npm can
+      # attest that this tarball was built from this repo, commit and workflow.
+      id-token: write
     steps:
       - uses: actions/checkout@v6
       - name: Use Node.js
@@ -22,6 +27,8 @@ jobs:
         run: |
           npm ci
           npm run build
+      - name: Lint
+        run: npm run lint
       - name: Test (non-interactive)
         run: npm test
         env:
@@ -29,4 +36,4 @@ jobs:
       - name: Publish to npm
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: npm publish --access public
+        run: npm publish

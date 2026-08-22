@@ -1,4 +1,9 @@
-# npx-brignano <a href="#"><img src="https://img.shields.io/badge/-npx%20brignano-white?style=flat-square&logo=npm&logoColor=grey" align="right" alt="npm Badge"></img></a>
+# npx-brignano
+
+[![npm version](https://img.shields.io/npm/v/brignano?style=flat-square&logo=npm&color=8b5cf6)](https://www.npmjs.com/package/brignano)
+[![npm downloads](https://img.shields.io/npm/dm/brignano?style=flat-square&color=8b5cf6)](https://www.npmjs.com/package/brignano)
+[![CI](https://img.shields.io/github/actions/workflow/status/brignano/npx-brignano/ci.yml?branch=main&style=flat-square&label=ci)](https://github.com/brignano/npx-brignano/actions/workflows/ci.yml)
+[![license](https://img.shields.io/npm/l/brignano?style=flat-square&color=8b5cf6)](LICENSE)
 
 An interactive terminal business card for Anthony Brignano. Run it with `npx` to get a gradient ASCII-art intro, a styled card with **live GitHub stats**, and quick actions — copy my email, open my socials, save my contact, or grab a scannable QR code.
 
@@ -33,7 +38,8 @@ Run `npx brignano --help` to see this list.
 | Flag | Description |
 |------|-------------|
 | `-h, --help` | Show help and exit. |
-| `-v, --view` | Open my resume in your default browser (`https://brignano.io/resume`). |
+| `-v, --version` | Print the installed version and exit. |
+| `-r, --view` / `--resume` | Open my resume in your default browser (`https://brignano.io/resume`). |
 | `-e, --email` | Open your mail client with a new message to `hi@brignano.io`. |
 | `--qr` | Print a scannable QR code to my website and exit. |
 | `--vcard` / `--save-contact` | Save my contact card (`.vcf`) and open it. |
@@ -41,11 +47,19 @@ Run `npx brignano --help` to see this list.
 | `--no-prompt` | Show the card only and exit (non-interactive). |
 | `-d, --download` | Deprecated alias for `--view`. |
 
+Unrecognized flags exit with a non-zero status instead of silently falling back
+to the default card.
+
+> **Note:** as of `1.2.0`, `-v` prints the version (the near-universal CLI
+> convention). The resume now lives at `-r`, and the long `--view` flag is
+> unchanged.
+
 ### Examples
 
 ```bash
 npx brignano              # full interactive experience
 npx brignano --view       # jump straight to my resume
+npx brignano --version    # print the version
 npx brignano --qr         # print a QR code to my site
 npx brignano --vcard      # save my contact card
 npx brignano --no-prompt  # card only (useful in CI/scripts)
@@ -61,7 +75,13 @@ npm run build
 node dist/card.js
 ```
 
-Source lives in `src/` (split into small modules — `card.ts` is the entry/`bin` target) and compiles to `dist/` via `tsc`.
+Source lives in `src/` (split into small modules — `card.ts` is the entry/`bin`
+target) and compiles to `dist/` via `tsc`. `npm run dev` runs the TypeScript
+directly through `tsx`; `npm run lint` and `npm run format` use
+[Biome](https://biomejs.dev).
+
+Only `dist/` is published — the tarball is ~8 kB, so `npx brignano` stays a fast
+cold start.
 
 ## Prerequisites
 
@@ -78,4 +98,4 @@ Inspired by [anmol098/npx_card](https://github.com/anmol098/npx_card).
 
 ## License
 
-See `package.json` for license information.
+[ISC](LICENSE) © Anthony Brignano

@@ -16,8 +16,12 @@ export const profile = {
   linkedin: 'https://linkedin.com/in/brignano',
 } as const;
 
+// A list the compiler knows has at least one element, so `pick` can never be
+// handed something it has no safe answer for.
+type NonEmpty<T> = readonly [T, ...T[]];
+
 // Rotating taglines — one is picked per run so repeat visitors see variety.
-export const taglines: string[] = [
+export const taglines: NonEmpty<string> = [
   'My inbox is always open. Ask a question or just say hi — I read everything.',
   'Building reliable systems, mentoring engineers, and shipping things that last.',
   "If it's worth automating, it's worth a clean abstraction. Let's build.",
@@ -26,13 +30,16 @@ export const taglines: string[] = [
 ];
 
 // Small easter-egg facts, shown occasionally below the card.
-export const funFacts: string[] = [
+export const funFacts: NonEmpty<string> = [
   'This card is open source — `npx brignano --help` shows every trick.',
   'Tip: scan the QR with your phone to save my contact instantly.',
   'The live stats above are pulled fresh from GitHub (with a strict timeout).',
 ];
 
 // Deterministic-enough pick without Math.random (kept simple + dependency-free).
-export function pick<T>(items: readonly T[], seed = Date.now()): T {
-  return items[Math.floor(seed / 1000) % items.length];
+// The `?? items[0]` fallback is unreachable for a NonEmpty list, but it keeps the
+// return type honest under `noUncheckedIndexedAccess` without an assertion.
+export function pick<T>(items: NonEmpty<T>, seed = Date.now()): T {
+  const index = Math.floor(seed / 1000) % items.length;
+  return items[index] ?? items[0];
 }

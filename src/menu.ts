@@ -1,3 +1,4 @@
+import { select } from '@inquirer/prompts';
 import chalk from 'chalk';
 import clipboard from 'clipboardy';
 import open from 'open';
@@ -81,4 +82,17 @@ export function buildChoices(): MenuChoice[] {
       },
     },
   ];
+}
+
+// Shows the action menu and returns the chosen handler. Ctrl+C / Esc throws an
+// `ExitPromptError`, which the entry point treats as a normal exit.
+export async function promptForAction(): Promise<() => void | Promise<void>> {
+  const choices = buildChoices();
+  return select<() => void | Promise<void>>({
+    message: 'What would you like to do?',
+    choices,
+    // Default page size is 7, which would hide the last entry behind a scroll.
+    // Show every action at once — the list is short and fixed.
+    pageSize: choices.length,
+  });
 }
