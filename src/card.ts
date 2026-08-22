@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 
 import chalk from 'chalk';
-import inquirer from 'inquirer';
 import { animateBanner, renderBanner } from './banner.js';
 import { renderCard } from './cardBox.js';
 import { funFacts, pick, profile, taglines } from './data.js';
@@ -9,11 +8,13 @@ import {
   clearConsole,
   isInteractive,
   parseFlags,
+  readVersion,
   shouldAnimate,
   shouldFetchLive,
+  unknownFlags,
 } from './env.js';
 import { fetchLive } from './live.js';
-import { buildChoices, sendEmail, viewResume } from './menu.js';
+import { promptForAction, sendEmail, viewResume } from './menu.js';
 import { renderQr } from './qrcode.js';
 import { reveal, sleep } from './reveal.js';
 import { writeAndOpenVCard } from './vcard.js';
@@ -21,22 +22,37 @@ import { writeAndOpenVCard } from './vcard.js';
 function printHelp(): void {
   console.log('\nUsage: npx brignano [options]\n');
   console.log('Options:');
-  console.log('  -h, --help        Show this help');
-  console.log('  -v, --view        Open my resume in your browser');
-  console.log('  -e, --email       Open your mail client to email me');
-  console.log('      --qr          Print a scannable QR code to my website');
-  console.log('      --vcard       Save my contact card (.vcf) and open it');
+  console.log('  -h, --help          Show this help');
+  console.log('  -v, --version       Print the version and exit');
+  console.log('  -r, --view          Open my resume in your browser');
+  console.log('  -e, --email         Open your mail client to email me');
+  console.log('      --qr            Print a scannable QR code to my website');
+  console.log('      --vcard         Save my contact card (.vcf) and open it');
   console.log('      --no-animation  Render instantly, skip the reveal animation');
-  console.log('      --no-prompt   Show the card only (non-interactive)');
-  console.log('  -d, --download    Deprecated alias for --view\n');
+  console.log('      --no-prompt     Show the card only (non-interactive)');
+  console.log('  -d, --download      Deprecated alias for --view\n');
 }
 
 async function main(): Promise<void> {
   const argv = process.argv.slice(2);
+
+  // Reject typos loudly rather than silently rendering the default card.
+  const unknown = unknownFlags(argv);
+  if (unknown.length > 0) {
+    console.error(`Unknown option: ${unknown.join(', ')}`);
+    console.error("Run 'npx brignano --help' to see the available options.");
+    process.exitCode = 1;
+    return;
+  }
+
   const flags = parseFlags(argv);
 
   // Direct-action flags short-circuit the full experience.
   if (flags.help) return printHelp();
+  if (flags.version) {
+    console.log(readVersion());
+    return;
+  }
   if (flags.view || flags.download) {
     if (flags.download) {
       console.warn('Note: --download is deprecated; opening the resume instead.');
@@ -79,19 +95,16 @@ async function main(): Promise<void> {
 
   if (!interactive) return;
 
-  const prompt = inquirer.createPromptModule();
-  const { action } = await prompt([
-    {
-      type: 'list',
-      name: 'action',
-      message: 'What would you like to do?',
-      choices: buildChoices(),
-    },
-  ]);
+  const action = await promptForAction();
   await action();
 }
 
 main().catch((err: unknown) => {
+  // Ctrl+C / Esc at the menu is a normal way to leave, not a crash.
+  if (err instanceof Error && err.name === 'ExitPromptError') {
+    console.log('\nHave a great day!\n');
+    return;
+  }
   const message = err instanceof Error ? err.message : String(err);
   console.error(`Something went wrong: ${message}`);
   process.exitCode = 1;

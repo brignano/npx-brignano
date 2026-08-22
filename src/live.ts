@@ -24,10 +24,10 @@ export async function fetchLive(timeoutMs = 1500): Promise<LiveData | null> {
         headers: HEADERS,
         signal: controller.signal,
       }),
-      fetch(
-        `${API}/users/${profile.username}/repos?sort=updated&per_page=1`,
-        { headers: HEADERS, signal: controller.signal },
-      ),
+      fetch(`${API}/users/${profile.username}/repos?sort=updated&per_page=1`, {
+        headers: HEADERS,
+        signal: controller.signal,
+      }),
     ]);
 
     if (!userRes.ok || !reposRes.ok) return null;
