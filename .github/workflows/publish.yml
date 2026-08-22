@@ -6,7 +6,11 @@ name: Publish Package
 on:
   workflow_dispatch:
   release:
-    types: [created]
+    # `created` never fires for draft releases, and does not fire when a release
+    # is published from a previously-saved draft — so the usual "save a draft,
+    # write the notes, hit Publish" flow silently skipped the npm publish.
+    # `published` covers both publishing directly and publishing from a draft.
+    types: [published]
 
 jobs:
   publish:
@@ -36,4 +40,7 @@ jobs:
       - name: Publish to npm
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: npm publish
+        # `published` also fires for pre-releases, so ship those under the
+        # `next` dist-tag — otherwise a pre-release would become the version
+        # `npx brignano` resolves to. Manual runs publish to `latest`.
+        run: npm publish ${{ github.event.release.prerelease && '--tag next' || '' }}
