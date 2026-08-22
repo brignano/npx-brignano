@@ -50,7 +50,7 @@ Run `npx brignano --help` to see this list.
 Unrecognized flags exit with a non-zero status instead of silently falling back
 to the default card.
 
-> **Note:** as of `1.2.0`, `-v` prints the version (the near-universal CLI
+> **Note:** as of `2.0.0`, `-v` prints the version (the near-universal CLI
 > convention). The resume now lives at `-r`, and the long `--view` flag is
 > unchanged.
 
