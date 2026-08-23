@@ -1,5 +1,12 @@
-# Publishes to npm when a GitHub release is created.
-# https://docs.github.com/en/actions/publishing-packages/publishing-nodejs-packages
+# Publishes to npm when a GitHub release is published.
+#
+# Authentication is npm trusted publishing (OIDC) — there is deliberately no
+# NPM_TOKEN. The registry verifies a short-lived, workflow-scoped OIDC token
+# instead of a stored credential, so there is nothing to leak or rotate.
+#
+# This requires a trusted publisher configured on npmjs.com for the `brignano`
+# package, pointing at this repository and this workflow filename. Without it,
+# the publish step fails with an authentication error.
 
 name: Publish Package
 
@@ -17,8 +24,9 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      # Required for npm provenance: lets the job mint an OIDC token so npm can
-      # attest that this tarball was built from this repo, commit and workflow.
+      # Mints the OIDC token npm exchanges for publish rights. Also what
+      # provenance is derived from, so the attestation still names this repo,
+      # commit and workflow.
       id-token: write
     steps:
       - uses: actions/checkout@v6
@@ -27,6 +35,11 @@ jobs:
         with:
           node-version: '22.x'
           registry-url: 'https://registry.npmjs.org'
+      # Trusted publishing needs npm >= 11.5.1; Node 22 still ships npm 10.x.
+      - name: Use an npm that supports trusted publishing
+        run: |
+          npm install -g npm@latest
+          npm --version
       - name: Install & Build
         run: |
           npm ci
@@ -38,8 +51,8 @@ jobs:
         env:
           CI: true
       - name: Publish to npm
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        # No NODE_AUTH_TOKEN: auth comes from the OIDC token minted above.
+        #
         # `published` also fires for pre-releases, so ship those under the
         # `next` dist-tag — otherwise a pre-release would become the version
         # `npx brignano` resolves to. Manual runs publish to `latest`.
