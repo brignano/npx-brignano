@@ -5,7 +5,6 @@ import { animateBanner, renderBanner } from './banner.js';
 import { renderCard } from './cardBox.js';
 import { funFacts, pick, profile, taglines } from './data.js';
 import {
-  clearConsole,
   isInteractive,
   parseFlags,
   readVersion,
@@ -73,8 +72,6 @@ async function main(): Promise<void> {
   // Kick off the live fetch early (don't await yet) so its timeout budget
   // overlaps the banner render. Skipped entirely when non-interactive/CI.
   const livePromise = shouldFetchLive(flags) ? fetchLive() : Promise.resolve(null);
-
-  clearConsole();
 
   // Banner first: an animated violet shimmer when we can animate, otherwise the
   // static gradient.
