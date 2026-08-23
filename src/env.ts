@@ -95,17 +95,3 @@ export function shouldAnimate(flags: Flags): boolean {
 export function shouldFetchLive(flags: Flags): boolean {
   return isInteractive(flags);
 }
-
-export function clearConsole(): void {
-  const out = process.stdout as NodeJS.WriteStream & { clear?: () => void };
-  if (typeof out.clear === 'function') {
-    try {
-      out.clear();
-    } catch {
-      /* ignore */
-    }
-  }
-  if (process.stdout.isTTY) {
-    process.stdout.write('\u001b[2J\u001b[0f');
-  }
-}

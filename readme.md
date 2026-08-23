@@ -75,6 +75,12 @@ npm run build
 node dist/card.js
 ```
 
+> **Running it inside this repo:** `npx brignano` resolves to *this* package's
+> `bin` (`dist/`), not the published one — and `dist/` is gitignored. On a fresh
+> clone it will exit silently until you build. Use `npm run dev` (runs the
+> TypeScript directly, no build step), or `npm run build` first. To exercise the
+> published package instead, run `npx brignano` from any other directory.
+
 Source lives in `src/` (split into small modules — `card.ts` is the entry/`bin`
 target) and compiles to `dist/` via `tsc`. `npm run dev` runs the TypeScript
 directly through `tsx`; `npm run lint` and `npm run format` use
