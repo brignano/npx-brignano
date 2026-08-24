@@ -1,8 +1,8 @@
-# npx-brignano
+# npx brignano
 
 [![npm version](https://img.shields.io/npm/v/brignano?style=flat-square&logo=npm&color=8b5cf6)](https://www.npmjs.com/package/brignano)
 [![npm downloads](https://img.shields.io/npm/dm/brignano?style=flat-square&color=8b5cf6)](https://www.npmjs.com/package/brignano)
-[![CI](https://img.shields.io/github/actions/workflow/status/brignano/npx-brignano/ci.yml?branch=main&style=flat-square&label=ci)](https://github.com/brignano/npx-brignano/actions/workflows/ci.yml)
+[![CI](https://img.shields.io/github/actions/workflow/status/brignano/card/ci.yml?branch=main&style=flat-square&label=ci)](https://github.com/brignano/card/actions/workflows/ci.yml)
 [![license](https://img.shields.io/npm/l/brignano?style=flat-square&color=8b5cf6)](LICENSE)
 
 An interactive terminal business card for Anthony Brignano. Run it with `npx` to get a gradient ASCII-art intro, a styled card with **live GitHub stats**, and quick actions — copy my email, open my socials, save my contact, or grab a scannable QR code.
@@ -68,8 +68,8 @@ npx brignano --no-prompt  # card only (useful in CI/scripts)
 ## Local development
 
 ```bash
-git clone https://github.com/brignano/npx-brignano.git
-cd npx-brignano
+git clone https://github.com/brignano/card.git
+cd card
 npm install
 npm run build
 node dist/card.js
