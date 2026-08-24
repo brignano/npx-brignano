@@ -8,7 +8,7 @@ export interface LiveData {
 
 const API = 'https://api.github.com';
 const HEADERS = {
-  'User-Agent': 'npx-brignano',
+  'User-Agent': 'brignano',
   Accept: 'application/vnd.github+json',
 };
 

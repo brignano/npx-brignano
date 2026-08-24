@@ -1,6 +1,6 @@
 {
   "name": "brignano",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "type": "module",
   "engines": {
     "node": ">=20"
@@ -22,14 +22,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/brignano/npx-brignano.git"
+    "url": "git+https://github.com/brignano/card.git"
   },
   "author": "Anthony Brignano <anthonybrignano@gmail.com> (https://brignano.io/)",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/brignano/npx-brignano/issues"
+    "url": "https://github.com/brignano/card/issues"
   },
-  "homepage": "https://github.com/brignano/npx-brignano#readme",
+  "homepage": "https://github.com/brignano/card#readme",
   "keywords": [
     "npx",
     "business-card",
@@ -38,7 +38,7 @@
     "resume",
     "vcard"
   ],
-  "description": "A personal card for Anthony Brignano (@brignano)",
+  "description": "An interactive terminal business card for Anthony Brignano — run `npx brignano`",
   "publishConfig": {
     "access": "public",
     "provenance": true
